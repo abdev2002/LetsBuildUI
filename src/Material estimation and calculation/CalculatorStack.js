@@ -6,6 +6,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { colors } from "../Common/Colors";
 import CalculationTypeScreen from "./CalculationTypeScreen";
 import HouseScreen from "./HouseScreen";
+import BlockRoadScreen from "./BlockRoadScreen"
+import RoadScreen from "./RoadScreen"
+import GrayStructureScreen from "./GrayStructureScreen";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +40,21 @@ const CalculatorStack = () => {
         <Stack.Screen
           name="House"
           component={HouseScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Gray Structure"
+          component={GrayStructureScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Road"
+          component={RoadScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Block Road"
+          component={BlockRoadScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
