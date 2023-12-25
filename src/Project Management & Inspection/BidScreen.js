@@ -31,10 +31,7 @@ class BidScreen extends Component {
   };
 
   navigateToBidDetail = (item) => {
-    // Use navigation prop to navigate to bidDetailScreen
     this.props.navigation.navigate("BidDetails", { bid: item });
-    console.log("Nav");
-    console.log(item);
   };
 
   renderBidItem = ({ item }) => {
@@ -64,20 +61,7 @@ class BidScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Animated.View
-          style={[
-            styles.header,
-            {
-              transform: [{ translateY: headerY }],
-            },
-          ]}
-        >
-          <TouchableOpacity onPress={this.toggleSearchBar}>
-            {/* <Ionicons name="search" size={24} color="black" /> */}
-          </TouchableOpacity>
-          {/* {searchBarVisible && <SearchBar />} */}
-          <SearchBar />
-        </Animated.View>
+        <SearchBar/>
         <FlatList
           data={bids}
           renderItem={this.renderBidItem}
@@ -98,6 +82,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 100,
+    backgroundColor: "#fff"
   },
   header: {
     position: "absolute",

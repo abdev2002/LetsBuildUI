@@ -23,11 +23,11 @@ export class CalculatorAdCard extends PureComponent {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.info}>{info}</Text>
         <Text style={styles.detail}>{detail}</Text>
-        <TouchableOpacity>
+        <View>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Try Now</Text>
           </View>
-        </TouchableOpacity>
+        </View>
         <ImageBackground
           source={require("../../assets/Building-construction-money-1024x768.jpg")}
           style={styles.backgroundImage}

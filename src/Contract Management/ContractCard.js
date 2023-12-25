@@ -24,18 +24,13 @@ class ContractCard extends Component {
 
 
   render() {
-    const { contract,navigation } = this.props;
+    const { contract } = this.props;
     const { heartColor } = this.state;
 
-// console.log(navigation)
 
     return (
       <View style={styles.item}>
-        <TouchableOpacity
-          // onPress={navigation.navigate("ContractDetails", {
-          //   contract: contract,
-          // })}
-        >
+        <View>
           <Text style={styles.titleText}>{contract.title}</Text>
           <View style={styles.infoContainer}>
             <View style={styles.infoChild}>
@@ -60,7 +55,7 @@ class ContractCard extends Component {
           <Text
             style={[styles.textInGray, { marginVertical: 20 }]}
           >{`Description: ${contract.description}`}</Text>
-        </TouchableOpacity>
+        </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {contract.skills.map((skill, index) => (
             <View style={styles.skill} key={index}>

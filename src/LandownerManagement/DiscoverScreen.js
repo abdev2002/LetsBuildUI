@@ -25,6 +25,7 @@ export class DiscoverScreen extends PureComponent {
   showAllProjects = () => {
     this.props.navigation.navigate("Projects");
   };
+
   showAllProducts = () => {
     this.props.navigation.navigate("Products");
   };
@@ -64,22 +65,32 @@ export class DiscoverScreen extends PureComponent {
     return (
       <ScrollView>
         <View style={styles.container}>
-        {/* <HeaderBack/> */}
-        <SearchBar placeholder={"Search"}/>
+          <SearchBar placeholder={"Search"} />
           <View style={styles.adContainer}>
             <View>
+            <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate("Contractor Locator")
+                }
+              >
               <LocatorAdCard
                 title="Contractor Locator"
                 info="Find most suitable contractor"
                 detail="According to your projects needs."
                 imageSrc="../../assets/mapPng.png"
-              />
-              <CalculatorAdCard
-                title="Cost Calculator"
-                info="Best automated solution for"
-                detail="Material estimation & calculation"
-                imageSrc="../../assets/mapPng.png"
-              />
+              /></TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate("Material Calculator")
+                }
+              >
+                <CalculatorAdCard
+                  title="Material Calculator"
+                  info="Best automated solution for"
+                  detail="Material estimation & calculation"
+                  imageSrc="../../assets/mapPng.png"
+                />
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.listHeaderContainer}>

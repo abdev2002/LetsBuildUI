@@ -62,28 +62,11 @@ class OrderScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Animated.View
-          style={[
-            styles.header,
-            {
-              transform: [{ translateY: headerY }],
-            },
-          ]}
-        >
-          <TouchableOpacity onPress={this.toggleSearchBar}>
-            {/* <Ionicons name="search" size={24} color="black" /> */}
-          </TouchableOpacity>
-        {/* {searchBarVisible && <SearchBar />} */}
-            <SearchBar/>
-        </Animated.View>
+        <SearchBar/>
         <FlatList
           data={orders}
           renderItem={this.renderOrderItem}
           keyExtractor={(item) => item.id.toString()}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-            { useNativeDriver: false }
-          )}
         />
       </View>
     );
@@ -95,6 +78,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 50,
+    backgroundColor: "#fff"
   },
   header: {
     position: "absolute",

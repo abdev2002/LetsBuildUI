@@ -1,212 +1,102 @@
-import React from "react";
 import {
   Text,
-  View,
-  Image,
   StyleSheet,
-  TouchableOpacity,
-  Alert,
+  View,
   Dimensions,
+  Image,
   ScrollView,
 } from "react-native";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import React, { Component } from "react";
+import { colors } from "../Common/Colors";
 
-const screenWidth = Dimensions.get("window").width;
+const screenWidth = Dimensions.get("screen").width;
+const screenHeight = Dimensions.get("screen").height;
+export default class ContractDetailScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-const ContractDetailScreen = ({ route }) => {
-  const { contract } = route.params;
-  return (
-    <ScrollView vertical style={styles.container}>
-      <Text style={styles.title}>{contract.title}</Text>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.label}>contract ID:</Text>
-        <Text style={styles.text}>{contract.id}</Text>
-      </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.label}>Quantity:</Text>
-        <Text style={styles.text}>{contract.quantity}</Text>
-      </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.label}>Customer:</Text>
-        <Text style={styles.text}>{contract.contractingPerson}</Text>
-      </View>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.label}>Address:</Text>
-        <Text style={styles.text}>{contract.address}</Text>
-      </View>
-      <View style={styles.statusContainer}>
-        <Text
-          style={{
-            padding: 5,
-            fontWeight: "bold",
-            width: 80,
-            marginRight: 5,
-          }}
-        >
-          Status:
-        </Text>
-        <View
-          style={[
-            styles.status,
-            { backgroundColor: getStatusColor(contract.status) },
-          ]}
-        >
-          <Text style={styles.statusText}>{contract.status}</Text>
+  render() {
+    const { contract } = this.props.route.params;
+    return (
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.title}>{contract.title}</Text>
+          <Text style={styles.heading}>{"Budget"}</Text>
+          <Text style={styles.textInGray}>{contract.budget}</Text>
+          <Text style={styles.heading}>{"Timeline"}</Text>
+          <Text style={styles.textInGray}>{contract.duration}</Text>
+          <Text style={styles.heading}>{"Bid Duration"}</Text>
+          <Text style={styles.textInGray}>{"2 days left"}</Text>
+          <Text style={styles.heading}>{"Number of Bids"}</Text>
+          <Text style={styles.textInGray}>{"5"}</Text>
+          <Text style={styles.heading}>{"Description"}</Text>
+          <Text style={styles.textInGray}>{contract.description}</Text>
+          <Text style={styles.heading}>{"Skills"}</Text>
+          <View style={styles.skills}>
+            {contract.skills.map((skill, index) => (
+              <View style={styles.skill} key={index}>
+                <Text style={styles.skillText}>{skill}</Text>
+              </View>
+            ))}
+          </View>
         </View>
-        {(contract.status === "Pending" && (
-          <TouchableOpacity
-            onPress={() => changeStatus("Shipped")}
-            style={{
-              backgroundColor: "#ff9d00",
-              padding: 5,
-              bcontractRadius: 5,
-              marginLeft: 10,
-              position: "absolute",
-              right: 0,
-            }}
-          >
-            <Text style={styles.statusText}>Ship Now</Text>
-          </TouchableOpacity>
-        )) ||
-          (contract.status === "Shipped" && (
-            <TouchableOpacity
-              onPress={() => changeStatus("Delivered")}
-              style={{
-                backgroundColor: "#ff9d00",
-                padding: 5,
-                bcontractRadius: 5,
-                marginLeft: 10,
-                position: "absolute",
-                right: 0,
-              }}
-            >
-              <Text style={styles.statusText}>Deliver Now</Text>
-            </TouchableOpacity>
-          ))}
-        <View
-          style={[
-            styles.absButtons,
-            {
-              bottom: contract.status === "Delivered" ? 0 : 50, // Adjust bottom based on status
-            },
-          ]}
-        >
-          <TouchableOpacity onPress={saveAsJPEG} style={styles.btns}>
-            <Ionicons name={"chatbubble-ellipses"} size={30} color={"#fff"} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={saveAsJPEG} style={styles.btns}>
-            <Ionicons name={"save"} size={30} color={"#fff"} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={shareScreenshot} style={styles.btns}>
-            <Ionicons name={"share"} size={30} color={"#fff"} />
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.amountContainer}>
-        <Text style={styles.amount}>{contract.amount} PKR</Text>
-      </View>
-    </ScrollView>
-  );
-};
-
-const changeStatus = (newStatus) => {
-  // this.contract.status = newStatus;
-  // Logic to change the status
-  // For example, update the status in the backend or state
-  // This function should handle the status change process
-
-  // For demonstration, let's assume an alert for status change
-  Alert.alert(`contract status changed to ${newStatus}`);
-};
+      </ScrollView>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // alignItems: "center",
+    paddingTop: 100,
+    backgroundColor: colors.white,
+    height: screenHeight,
     padding: 20,
-    backgroundColor: "#fff",
+  },
+  image: {
+    resizeMode: "cover",
+    maxWidth: "100%",
+    maxHeight: screenWidth - 40,
+    marginVertical: 20,
+    alignContent: "center",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 20,
+    textAlign: "left",
+    marginVertical: 20
   },
-  detailsContainer: {
-    flexDirection: "row",
-    // marginBottom: 10,
-    // backgroundColor: "#ffff00",
-  },
-  label: {
-    padding: 5,
+  heading: {
+    fontSize: 20,
     fontWeight: "bold",
-    width: 80,
-    bcontractColor: "#ccc",
-    bcontractTopWidth: 1,
-  },
-  text: {
-    bcontractColor: "#ccc",
-    bcontractLeftWidth: 1,
-    flex: 1,
-    paddingHorizontal: 5,
-    bcontractColor: "#ccc",
-    bcontractTopWidth: 1,
-  },
-  statusContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    // marginBottom: 10,
+    textAlign: "left",
+    color: colors.black,
     marginTop: 10,
   },
-  status: {
-    padding: 5,
-    bcontractRadius: 5,
+  textInGray: {
+    fontSize: 15,
+    lineHeight: 20,
+    color: colors.darkGray,
   },
-  statusText: {
-    color: "#fff",
-    fontWeight: "bold",
+  skills: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    paddingVertical: 10,
   },
-  amountContainer: {
-    marginTop: 20,
-    bcontractTopWidth: 1,
-    paddingTop: 10,
-    bcontractTopColor: "#ddd",
-    alignItems: "flex-end",
-  },
-  amount: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  image: {
-    width: screenWidth - 40,
-    height: screenWidth - 40,
-    resizeMode: "contain",
-    bcontractWidth: 1,
-    bcontractColor: "#ccc",
-    backgroundColor: "#ccc",
-  },
-  btns: {
-    bcontractRadius: 50,
-    height: 50,
-    width: 50,
-    backgroundColor: "#ff9d00",
-    color: "#fff",
+  skill: {
+    backgroundColor: "#ffdba1",
+    borderRadius: 30,
+    height: 30,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    marginRight: 5,
+    paddingHorizontal: 10,
+    marginBottom: 5,
   },
-  absButtons: {
-    right: 0,
-    // bottom: 50,
-    position: "absolute",
-    flexDirection: "column",
+  skillText: {
+    fontSize: 15,
+    fontWeight: "400",
   },
 });
-
-export default ContractDetailScreen;

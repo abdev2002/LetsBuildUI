@@ -20,7 +20,7 @@ class BidDetailScreen extends Component {
 
   render() {
     const { bid } = this.props.route.params;
-    console.log(bid);
+    
     return (
       <ScrollView vertical style={styles.container}>
         <Text style={styles.title}>{bid.title}</Text>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
+    paddingTop: 50
   },
   title: {
     fontSize: 24,

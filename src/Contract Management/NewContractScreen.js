@@ -10,10 +10,10 @@ import {
 import { Entypo, FontAwesome5 } from "@expo/vector-icons";
 import TextInputWithoutIcon from "../Common/TextInputWithoutIcon";
 
-class AddProductScreen extends Component {
+class NewContractScreen extends Component {
   render() {
     return (
-      <ScrollView vertical>
+      <ScrollView style={styles.ScrollContainer} vertical>
         <View style={styles.container}>
           <View style={styles.imageContainer}>
             <Text style={styles.headingText}>UPLOAD UP TO 5 PHOTOS</Text>
@@ -22,24 +22,7 @@ class AddProductScreen extends Component {
               style={styles.productImage}
             />
           </View>
-          <Text
-            style={[
-              styles.headingText,
-              { textAlign: "left", width: "100%", padding: 20 },
-            ]}
-          >
-            Category *
-          </Text>
-          <View style={styles.categoryContainer}>
-            <View style={styles.categoryButton}>
-              <Entypo name={"tools"} size={20} color={"#fff"} />
-              <Text style={styles.categoryButtonText}>Tools</Text>
-            </View>
-            <View style={styles.categoryButton}>
-              <FontAwesome5 name={"boxes"} size={20} color={"#fff"} />
-              <Text style={styles.categoryButtonText}>Materials</Text>
-            </View>
-          </View>
+
           <View style={styles.infoContainer}>
             <Text style={styles.textInGray}>Title *</Text>
             <TextInputWithoutIcon
@@ -48,25 +31,53 @@ class AddProductScreen extends Component {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.textInGray}>Price *</Text>
+            <Text style={styles.textInGray}>Budget *</Text>
             <TextInputWithoutIcon
-              placeholder="Enter Price"
+              placeholder="Enter Bidget"
               keyboardType="numeric"
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.textInGray}>Details *</Text>
+            <Text style={styles.textInGray}>Timeline *</Text>
+            <TextInputWithoutIcon
+              placeholder="Enter Timeline"
+              keyboardType="default"
+            />
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInGray}>Bid duration *</Text>
+            <TextInputWithoutIcon
+              placeholder="Enter Duration"
+              keyboardType="default"
+            />
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInGray}>Max number of bids *</Text>
+            <TextInputWithoutIcon
+              placeholder="Enter Bids"
+              keyboardType="numeric"
+            />
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInGray}>Description *</Text>
             <TextInputWithoutIcon
               placeholder="Enter Description"
               keyboardType="default"
             />
           </View>
-          <TouchableOpacity style={styles.addButton}>
+          <View style={styles.infoContainer}>
+            <Text style={styles.textInGray}>Skills *</Text>
+            <TextInputWithoutIcon
+              placeholder="Enter Skills 'comma separated'"
+              keyboardType="default"
+            />
+          </View>
+          <TouchableOpacity style={styles.addButton} onPress={() => "#"}>
             <Text
               style={styles.buttonText}
-              onPress={() => this.props.navigation.navigate("Drawer")}
+             
             >
-              Add Product
+              Create new Contract
             </Text>
           </TouchableOpacity>
         </View>
@@ -76,11 +87,9 @@ class AddProductScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  ScrollContainer: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    paddingTop: 100
   },
   buttonText: {
     color: "#fff",
@@ -97,6 +106,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    paddingTop: 100,
   },
   textInGray: {
     fontWeight: "bold",
@@ -165,4 +180,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddProductScreen;
+export default NewContractScreen;

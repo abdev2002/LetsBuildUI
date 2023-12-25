@@ -12,6 +12,8 @@ import ProductCard from "./ProductCard";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { ScrollView } from "react-native-gesture-handler";
 import { Entypo, FontAwesome5 } from "@expo/vector-icons";
+import {colors} from "../Common/Colors";
+
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -68,17 +70,13 @@ class CatalogueScreen extends Component {
           {/* <View style={styles.searchContainer}>
             <SearchBar placeholder="Search Products" />
           </View> */}
-          <View style={styles.headContainer}>
-            <View style={styles.headTextContainer}>
-              <FontAwesome5 name={"boxes"} size={20} color={"#ff9d00"} />
-              <Text style={styles.headText}>Materials</Text>
+          <View style={styles.listHeaderContainer}>
+            <View style={styles.listHeader}>
+              <Text style={styles.listHeaderText}>Materials</Text>
             </View>
-            <Text
-              style={styles.viewAll}
-              onPress={() => this.navigateToMaterialScreen()}
-            >
-              View all
-            </Text>
+            <TouchableOpacity onPress={() => "#"}>
+              <Text style={{ color: "gray", fontSize: 17 }}>View All</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.listContainer}>
             <FlatList
@@ -88,12 +86,13 @@ class CatalogueScreen extends Component {
               horizontal={true} // Set FlatList to display items horizontally
             />
           </View>
-          <View style={styles.headContainer}>
-            <View style={styles.headTextContainer}>
-              <Entypo name={"tools"} size={20} color={"#ff9d00"} />
-              <Text style={styles.headText}>Tools</Text>
+          <View style={styles.listHeaderContainer}>
+            <View style={styles.listHeader}>
+              <Text style={styles.listHeaderText}>Tools</Text>
             </View>
-            <Text style={styles.viewAll}>View all</Text>
+            <TouchableOpacity onPress={() => "#"}>
+              <Text style={{ color: "gray", fontSize: 17 }}>View All</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.listContainer}>
             <FlatList
@@ -115,6 +114,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
+    paddingTop: 50
   },
   searchContainer: {},
   listContainer: {
@@ -123,6 +123,28 @@ const styles = StyleSheet.create({
     // backgroundColor: "#ffc9d0",
 
     paddingVertical: 10,
+  },
+  listHeaderContainer: {
+    width: "100%",
+    height: "auto",
+    padding: 10,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderTopColor: colors.mediumGray,
+    borderBottomColor: colors.mediumGray,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  listHeaderText: {
+    fontWeight: "bold",
+    fontSize: 25,
+    color: colors.orange,
+  },
+  listContainer: {
+    width: "100%",
+    paddingVertical: 20,
   },
   headContainer: {
     width: "90%",

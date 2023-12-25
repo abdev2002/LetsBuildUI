@@ -1,11 +1,12 @@
 import React,{Component} from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity, Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import SearchBar from "../Common/SearchBar";
 import contracts from "./ContractsData";
 import ContractCard from "./ContractCard";
 import BidCard from "../Project Management & Inspection/BidCard";
 
+const screenWidth = Dimensions.get("screen").width
 const Tab = createMaterialTopTabNavigator();
 
 export default class ContractScreen extends Component {
@@ -40,38 +41,82 @@ export default class ContractScreen extends Component {
     );
   }
 }
-// const contract = ContractsData.generateContract();
-function AssignedScreen() {
-  return (
-    <View style={styles.listContainer}>
-      <FlatList
-        data={contracts}
-        renderItem={({ item, navigation }) => (
-          <ContractCard
-            contract={item}
-            // onPress={navigation.navigate("ContractDetails", {
-            //   contract: item,
-            // })}
-          />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </View>
-  );
+
+class AssignedScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  navigateToContractDetail = (item) => {
+    this.props.navigation.navigate("ContractDetails", { contract: item });
+  };
+
+  renderContractItem = ({ item }) => {
+    return (
+      <TouchableOpacity onPress={() => this.navigateToContractDetail(item)}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: screenWidth,
+          }}
+        >
+          <ContractCard contract={item} />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  render() {
+    return (
+      <View style={styles.listContainer}>
+        <FlatList
+          data={contracts}
+          renderItem={this.renderContractItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    );
+  }
 }
 
-function FavouritesScreen() {
-  return (
-    <View style={styles.listContainer}>
-      <FlatList
-        data={contracts}
-        renderItem={({ item, navigation }) => (
+
+class FavouritesScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  navigateToContractDetail = (item) => {
+    this.props.navigation.navigate("ContractDetails", { contract: item });
+  };
+
+  renderContractItem = ({ item }) => {
+    return (
+      <TouchableOpacity onPress={() => this.navigateToContractDetail(item)}>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: screenWidth,
+          }}
+        >
           <ContractCard contract={item} />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </View>
-  );
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  render() {
+    return (
+      <View style={styles.listContainer}>
+        <FlatList
+          data={contracts}
+          renderItem={this.renderContractItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

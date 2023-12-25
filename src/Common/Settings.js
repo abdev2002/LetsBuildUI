@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text,StyleSheet } from 'react-native';
 
-export default function Screen2() {
+export default function Settings() {
   return (
     <View style={styles.container}>
-      <Text>Screen2</Text>
+      <Text>Settings</Text>
      </View>
   );
 }

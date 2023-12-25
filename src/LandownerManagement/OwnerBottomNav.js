@@ -19,6 +19,10 @@ import BidScreen from "../Project Management & Inspection/BidScreen";
 import BidDetailScreen from "../Project Management & Inspection/BidDetailScreen";
 import DiscoverScreen from "./DiscoverScreen";
 import ProductScreen from "../Supplier Management/ProductScreen";
+import AddProductScreen from "../Supplier Management/AddProductScreen";
+import AddProjectScreen from "../Project Management & Inspection/AddProjectScreen";
+import ProjectDetailScreen from "../Project Management & Inspection/ProjectDetailScreen";
+import NewContractScreen from "../Contract Management/NewContractScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -48,7 +52,7 @@ export default function OwnerBottomNav() {
           if (route.name === "Discover") {
             iconName = focused ? "search" : "search-outline"; // Replace with the appropriate Ionicons name
             return <Ionicons name={iconName} size={size} color={color} />;
-          } else if (route.name === "Projects") {
+          } else if (route.name === "My Projects") {
             iconName = focused ? "project" : "project"; // Replace with the appropriate icon
             return <Octicons name={iconName} size={size} color={color} />;
             // return <Image source={require("../../assets/projectIcon.png")} style={{height:{size}, width: {size}}}/>;
@@ -57,10 +61,7 @@ export default function OwnerBottomNav() {
               ? "chatbubble-ellipses"
               : "chatbubble-ellipses-outline"; // Replace with the appropriate icon
             return <Ionicons name={iconName} size={size} color={color} />;
-          } else if (route.name === "Notifications") {
-            iconName = focused ? "notifications" : "notifications-outline"; // Replace with the appropriate icon
-            return <Ionicons name={iconName} size={size} color={color} />;
-          } else if (route.name === "Contracts") {
+          } else if (route.name === "My Contracts") {
             iconName = "file-contract";
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           } else if (route.name === "Bids") {
@@ -68,32 +69,12 @@ export default function OwnerBottomNav() {
             return <FontAwesome5 name={iconName} size={size} color={color} />;
           }
         },
-        // headerStyle: {
-        //   backgroundColor: "#ff9d00",
-        // },
-        // headerTitleStyle: {
-        //   color: "#fff",
-        //   fontWeight: "bold",
-        //   textAlign: "center",
-        //   fontSize: 30,
-        // },
-        // headerTitleAllowFontScaling: true,
-        // headerTitleAlign: "center",
-      
-        // headerTitleAlign: "center",
       })}
     >
-      {/* <Tab.Screen name="Catalogue">
-        {() => <DiscoverScreen navigation={navigation} />}
-      </Tab.Screen> */}
       <Tab.Screen name="Discover" component={DiscoverStack} />
-      <Tab.Screen name="Projects" component={ProjectScreen} />
-      <Tab.Screen name="Bids" component={BidStack} />
-      {/* Replace OrdersScreen with OrdersStack */}
-      {/* <Tab.Screen name="Projects" component={ProjectScreen} /> */}
+      <Tab.Screen name="My Projects" component={ProjectStack} />
+      <Tab.Screen name="My Contracts" component={ContractStack} />
       <Tab.Screen name="Messages" component={MessageScreen} />
-      <Tab.Screen name="Notifications" component={NotificationScreen} />
-      {/* <Tab.Screen name="OrderDetail" component={OrderDetailScreen} /> */}
     </Tab.Navigator>
   );
 }
@@ -156,6 +137,21 @@ const ContractStack = () => {
     >
       <Stack.Screen name="Contracts" component={ContractScreen} />
       <Stack.Screen name="ContractDetails" component={ContractDetailScreen} />
+      <Stack.Screen name="New Contract" component={NewContractScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const ProjectStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+      })}
+    >
+      <Stack.Screen name="Projects" component={ProjectScreen} />
+      <Stack.Screen name="ProjectDetails" component={ProjectDetailScreen} />
+      <Stack.Screen name="New Project" component={AddProjectScreen} />
     </Stack.Navigator>
   );
 };
