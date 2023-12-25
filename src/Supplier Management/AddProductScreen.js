@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   infoContainer: {
     flex: 1,
     width: "90%",
-    // paddingHorizontal: 20,
     borderBottomColor: "#eee",
     paddingBottom: 20,
     borderBottomWidth: 1,

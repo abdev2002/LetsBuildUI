@@ -24,6 +24,7 @@ import OwnerBottomNav from "../LandownerManagement/OwnerBottomNav";
 import SupplierTabNav from "../Supplier Management/SupplierTabNav";
 import CalculatorStack from "../Material estimation and calculation/CalculatorStack"
 import { colors } from "./Colors";
+import HeaderBack from "./HeaderBack";
 
 const Drawer = createDrawerNavigator();
 
@@ -31,8 +32,8 @@ export default class AppDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSupplierVisible: true,
-      isOwnerVisible: false,
+      isSupplierVisible: false,
+      isOwnerVisible: true,
       isContractorVisible: false,
     };
   }
@@ -66,16 +67,33 @@ export default class AppDrawer extends Component {
         drawerActiveTintColor: colors.white,
         drawerAllowFontScaling: true,
         drawerType: "slide",
+        // headerLeftStyle: {
+        //   color: colors.orange,
+        // },
+        // headerTitleStyle: {
+        //   color: colors.orange,
+        // },
+        // headerLeftStyle: {
+        //   color: colors.white,
+        // },
+        // headerTitleAlign: "center",
+                    headerBackground: () => <HeaderBack/>,
+
         headerLeftStyle: {
-          color: colors.orange,
+          color: colors.white,
         },
         headerTitleStyle: {
-          color: colors.orange,
+          color: colors.white,
         },
         headerLeftStyle: {
           color: colors.white,
         },
-        headerTitleAlign: "center",
+        headerShadowVisible: false,
+        headerTransparent: true,
+        headerTintColor: "#fff",
+        headerStyle: {
+          elevation: 50,
+        },
       }}
     >
       {isSupplierVisible && (
@@ -109,17 +127,17 @@ export default class AppDrawer extends Component {
                 size={size}
               />
             ),
-            headerStyle: {
-              backgroundColor: colors.orange,
-            },
-            headerTitleStyle: {
-              color: colors.white,
-              fontWeight: "bold",
-              textAlign: "center",
-              fontSize: 30,
-            },
-            headerTitleAllowFontScaling: true,
-            headerTitleAlign: "center",
+            // headerStyle: {
+            //   backgroundColor: colors.orange,
+            // },
+            // headerTitleStyle: {
+            //   color: colors.white,
+            //   fontWeight: "bold",
+            //   textAlign: "center",
+            //   fontSize: 30,
+            // },
+            // headerTitleAllowFontScaling: true,
+            // headerTitleAlign: "center",
 
             // headerShown: false,
             // Drawer Icon, Header, etc.
@@ -181,12 +199,26 @@ export default class AppDrawer extends Component {
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons
-                name={focused ? "home" : "home-outline"}
+                name={focused ? "calculator" : "calculator-outline"}
                 color={color}
                 size={size}
               />
             ),
-
+            headerLeftStyle: {
+              color: colors.white,
+            },
+            headerTitleStyle: {
+              color: colors.white,
+            },
+            headerLeftStyle: {
+              color: colors.white,
+            },
+            headerShadowVisible: false,
+            headerTransparent: true,
+            headerTintColor: "#fff",
+            headerStyle: {
+              elevation: 50,
+            },
             // headerShown: false,
             // Drawer Icon, Header, etc.
           }}

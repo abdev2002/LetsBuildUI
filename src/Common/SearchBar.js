@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.mediumGray,
   },
   button: {
-    backgroundColor: "#ff9d00",
+    backgroundColor: colors.orange,
     height: 40,
     width: 40,
     justifyContent: "center",
@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     width: "70%",
     paddingHorizontal: 10,
     borderBottomLeftRadius: 35,
     borderTopLeftRadius: 35,
-    borderColor: "#ccc",
+    borderColor: colors.mediumGray,
     borderWidth: 1,
   },
 });

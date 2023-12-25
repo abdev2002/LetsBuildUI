@@ -21,36 +21,27 @@ const CalculatorStack = () => {
           // headerStyle: {
           //   backgroundColor: colors.orange,
           // },
-          // headerTitleStyle: {
-          //   color: colors.white,
-          //   fontWeight: "bold",
-          //   textAlign: "center",
-          //   fontSize: 30,
-          // },
-          // headerTitleAllowFontScaling: true,
-          // headerTitleAlign: "center",
         }}
         initialRouteName="start"
       >
         <Stack.Screen
           name="Start"
           component={CalculationTypeScreen}
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
         />
         <Stack.Screen
           name="House"
           component={HouseScreen}
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Gray Structure"
           component={GrayStructureScreen}
-          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Road"
           component={RoadScreen}
-          options={{ headerShown: false }}
+          // options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Block Road"

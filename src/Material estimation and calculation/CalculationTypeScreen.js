@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, Image, StyleSheet, Dimensions } from "react-native";
 import { colors } from "../Common/Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import HeaderBack from "../Common/HeaderBack";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -12,6 +13,7 @@ class CalculationTypeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <HeaderBack/>
         <Text style={styles.label}>
           To calculate the cost of your project please select the type of
           project from the following options
@@ -28,7 +30,10 @@ class CalculationTypeScreen extends Component {
               />
               <Text>House</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => "#"} style={styles.button}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Road")}
+              style={styles.button}
+            >
               <Image
                 source={require("../../assets/screen1.png")}
                 style={styles.buttonImage}
@@ -37,14 +42,20 @@ class CalculationTypeScreen extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => "#"} style={styles.button}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Gray Structure")}
+              style={styles.button}
+            >
               <Image
                 source={require("../../assets/CalculatorButtons/13664-NP28QT.jpg")}
                 style={styles.buttonImage}
               />
               <Text>Gray Structure</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => "#"} style={styles.button}>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("Block Road")}
+              style={styles.button}
+            >
               <Image
                 source={require("../../assets/screen1.png")}
                 style={styles.buttonImage}
@@ -60,9 +71,10 @@ class CalculationTypeScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     flex: 1,
+    alignItems: "center",
     backgroundColor: colors.white,
+    paddingTop: 100,
   },
   buttonContainer: {
     alignItems: "center",

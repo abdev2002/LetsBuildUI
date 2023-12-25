@@ -16,6 +16,7 @@ import products from "../Supplier Management/ProductData";
 import ProductCard from "../Supplier Management/ProductCard";
 import { Ionicons } from "@expo/vector-icons";
 import SearchBar from "../Common/SearchBar";
+import HeaderBack from "../Common/HeaderBack";
 export class DiscoverScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -63,6 +64,7 @@ export class DiscoverScreen extends PureComponent {
     return (
       <ScrollView>
         <View style={styles.container}>
+        {/* <HeaderBack/> */}
         <SearchBar placeholder={"Search"}/>
           <View style={styles.adContainer}>
             <View>
@@ -135,6 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     alignItems: "center",
     flex: 1,
+    paddingTop: 50
   },
   adContainer: {
     backgroundColor: colors.white,

@@ -37,6 +37,8 @@ class TextInputWithoutIcon extends Component {
           paddingLeft: 10,
           borderRadius: 10,
           marginVertical: 10,
+          minHeight: 40,
+          maxHeight:40
         }}
       />
     );

@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ProjectScreen from "../Project Management & Inspection/ProjectScreen";
+import ProjectScreen from "./ProjectScreen";
 import MessageScreen from "../Communication Module/MessageScreen";
 import NotificationScreen from "../Communication Module/NotificationScreen";
 import {
@@ -87,7 +87,7 @@ export default function OwnerBottomNav() {
         {() => <DiscoverScreen navigation={navigation} />}
       </Tab.Screen> */}
       <Tab.Screen name="Discover" component={DiscoverStack} />
-      <Tab.Screen name="Projects" component={ContractStack} />
+      <Tab.Screen name="Projects" component={ProjectScreen} />
       <Tab.Screen name="Bids" component={BidStack} />
       {/* Replace OrdersScreen with OrdersStack */}
       {/* <Tab.Screen name="Projects" component={ProjectScreen} /> */}
