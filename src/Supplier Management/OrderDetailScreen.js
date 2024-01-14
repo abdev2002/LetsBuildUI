@@ -117,7 +117,6 @@ const OrderDetailScreen = ({ route }) => {
   );
 };
 
-// Helper function to get status color based on status text
 const getStatusColor = (status) => {
   switch (status) {
     case "Pending":
@@ -166,12 +165,6 @@ const captureScreenshot = async () => {
 };
 
 const changeStatus = (newStatus) => {
-  // this.order.status = newStatus;
-  // Logic to change the status
-  // For example, update the status in the backend or state
-  // This function should handle the status change process
-
-  // For demonstration, let's assume an alert for status change
   Alert.alert(`Order status changed to ${newStatus}`);
 };
 
@@ -180,6 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
+    paddingTop: 50
   },
   title: {
     fontSize: 24,

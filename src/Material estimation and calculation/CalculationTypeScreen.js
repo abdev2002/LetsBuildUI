@@ -35,7 +35,7 @@ class CalculationTypeScreen extends Component {
               style={styles.button}
             >
               <Image
-                source={require("../../assets/screen1.png")}
+                source={require("../../assets/CalculatorButtons/29084-6-road-transparent-image.png")}
                 style={styles.buttonImage}
               />
               <Text>Road</Text>
@@ -47,7 +47,7 @@ class CalculationTypeScreen extends Component {
               style={styles.button}
             >
               <Image
-                source={require("../../assets/CalculatorButtons/13664-NP28QT.jpg")}
+                source={require("../../assets/CalculatorButtons/pngwing.com.png")}
                 style={styles.buttonImage}
               />
               <Text>Gray Structure</Text>
@@ -57,7 +57,7 @@ class CalculationTypeScreen extends Component {
               style={styles.button}
             >
               <Image
-                source={require("../../assets/screen1.png")}
+                source={require("../../assets/CalculatorButtons/tile.jpg")}
                 style={styles.buttonImage}
               />
               <Text>Road (Blocks)</Text>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     height: 100,
     width: 100,
-    borderRadius: 5000,
+    // borderRadius: 5000,
   },
   gridContainer: {
     width: screenWidth,

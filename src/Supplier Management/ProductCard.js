@@ -43,7 +43,7 @@ class ProductCard extends Component {
           <View
             style={[
               styles.itemChild,
-              { backgroundColor: "#ffc", maxHeight: "auto" },
+              { backgroundColor: "#fff", maxHeight: "auto" },
             ]}
           >
             <Text style={styles.titleText}>{product.name}</Text>

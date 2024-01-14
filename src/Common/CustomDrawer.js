@@ -42,7 +42,6 @@ const CustomDrawer = (props) => {
             />
             <View style={styles.userInfo}>
               <Text style={styles.userName}>M. Abdullah</Text>
-              <Text style={styles.userRole}>Supplier</Text>
             </View>
           </View>
         </ImageBackground>

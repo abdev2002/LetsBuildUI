@@ -23,6 +23,8 @@ import AddProductScreen from "../Supplier Management/AddProductScreen";
 import AddProjectScreen from "../Project Management & Inspection/AddProjectScreen";
 import ProjectDetailScreen from "../Project Management & Inspection/ProjectDetailScreen";
 import NewContractScreen from "../Contract Management/NewContractScreen";
+import OrderDetailScreen from "../Supplier Management/OrderDetailScreen";
+import OrderScreen from "../Supplier Management/OrderScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -53,20 +55,57 @@ export default function OwnerBottomNav() {
             iconName = focused ? "search" : "search-outline"; // Replace with the appropriate Ionicons name
             return <Ionicons name={iconName} size={size} color={color} />;
           } else if (route.name === "My Projects") {
-            iconName = focused ? "project" : "project"; // Replace with the appropriate icon
-            return <Octicons name={iconName} size={size} color={color} />;
-            // return <Image source={require("../../assets/projectIcon.png")} style={{height:{size}, width: {size}}}/>;
+            return focused ? (
+              <Image
+                source={require("../../assets/projectIconOrange.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            ) : (
+              <Image
+                source={require("../../assets/projectIconGray.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            );
           } else if (route.name === "Messages") {
             iconName = focused
               ? "chatbubble-ellipses"
               : "chatbubble-ellipses-outline"; // Replace with the appropriate icon
             return <Ionicons name={iconName} size={size} color={color} />;
           } else if (route.name === "My Contracts") {
-            iconName = "file-contract";
-            return <FontAwesome5 name={iconName} size={size} color={color} />;
-          } else if (route.name === "Bids") {
-            iconName = "file-invoice-dollar";
-            return <FontAwesome5 name={iconName} size={size} color={color} />;
+            return focused ? (
+              <Image
+                source={require("../../assets/contractOrange.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            ) : (
+              <Image
+                source={require("../../assets/contractGray.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            );
+          } else if (route.name === "My Orders") {
+            iconName = focused ? "cart" : "cart-outline";
+            return <Ionicons name={iconName} size={size} color={color} />;
           }
         },
       })}
@@ -74,10 +113,23 @@ export default function OwnerBottomNav() {
       <Tab.Screen name="Discover" component={DiscoverStack} />
       <Tab.Screen name="My Projects" component={ProjectStack} />
       <Tab.Screen name="My Contracts" component={ContractStack} />
+      <Tab.Screen name="My Orders" component={OrdersStack} />
       <Tab.Screen name="Messages" component={MessageScreen} />
     </Tab.Navigator>
   );
 }
+
+const OrdersStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={({ route }) => ({
+      })}
+    >
+      <Stack.Screen name="Orders" component={OrderScreen} />
+      <Stack.Screen name="OrderDetail" component={OrderDetailScreen} />
+    </Stack.Navigator>
+  );
+};
 
 const DiscoverStack = () => {
   return (
@@ -137,7 +189,6 @@ const ContractStack = () => {
     >
       <Stack.Screen name="Contracts" component={ContractScreen} />
       <Stack.Screen name="ContractDetails" component={ContractDetailScreen} />
-      <Stack.Screen name="New Contract" component={NewContractScreen} />
     </Stack.Navigator>
   );
 };
@@ -152,6 +203,7 @@ const ProjectStack = () => {
       <Stack.Screen name="Projects" component={ProjectScreen} />
       <Stack.Screen name="ProjectDetails" component={ProjectDetailScreen} />
       <Stack.Screen name="New Project" component={AddProjectScreen} />
+      <Stack.Screen name="New Contract" component={NewContractScreen} />
     </Stack.Navigator>
   );
 };

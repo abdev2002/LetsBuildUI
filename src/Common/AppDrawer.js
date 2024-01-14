@@ -9,10 +9,6 @@ import {
   Button,
 } from "react-native";
 import Screen2 from "./Settings";
-import LowerHeader from "../LowerHeader";
-import HomeScreen from "../Contract Management/HomeScreen";
-import ContractScreen from "../Contract Management/ContractScreen";
-import ProjectScreen from "../Project Management & Inspection/ProjectScreen";
 import Profile from "../Registration/Profile";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -50,14 +46,18 @@ export default class AppDrawer extends Component {
         isSupplierVisible: supplier,
         isOwnerVisible: owner,
       });
+    };
 
-      if (owner) {
-        this.props.navigation.navigate("Owner's Home");
-      } else if (supplier) {
-        this.props.navigation.navigate("Supplier's Home");
-      } else if (contractor) {
-        this.props.navigation.navigate("Contractor's Home");
-      }
+    navigateToOwnersHome = () => {
+      this.props.navigation.navigate("Owner's Home");
+    };
+
+    navigateToSuppliersHome = () => {
+      this.props.navigation.navigate("Supplier's Home");
+    };
+
+    navigateToContractorsHome = () => {
+      this.props.navigation.navigate("Contractor's Home");
     };
 
     return (
@@ -220,13 +220,24 @@ export default class AppDrawer extends Component {
         <Drawer.Screen
           name="Change Role"
           options={{
-            drawerIcon: ({ focused, color, size }) => (
-              <Ionicons
-                name={focused ? "settings" : "settings-outline"}
-                color={color}
-                size={size}
-              />
-            ),
+            drawerIcon: ({ focused, color, size }) =>
+              focused ? (
+                <Image
+                  source={require("../../assets/modeBtnFocused.png")}
+                  style={{
+                    height: size ,
+                    width: size ,
+                  }}
+                />
+              ) : (
+                <Image
+                  source={require("../../assets/modeBtnGray.png")}
+                  style={{
+                    height: size ,
+                    width: size ,
+                  }}
+                />
+              ),
           }}
         >
           {() => (
@@ -237,49 +248,96 @@ export default class AppDrawer extends Component {
                 alignItems: "center",
               }}
             >
-              <TouchableOpacity
-                style={{
-                  width: 150,
-                  height: 35,
-                  backgroundColor: colors.orange,
-                  margin: 30,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 50,
-                }}
-                onPress={() => toggleVisibility(false, false, true)}
-              >
-                <Text style={{ color: colors.white }}>Contractor</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  width: 150,
-                  height: 35,
-                  backgroundColor: colors.orange,
-                  margin: 30,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 50,
-                }}
-                onPress={() => toggleVisibility(false, true, false)}
-              >
-                <Text style={{ color: colors.white }}>Supplier</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={{
-                  width: 150,
-                  height: 35,
-                  backgroundColor: colors.orange,
-                  margin: 30,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: 50,
-                }}
-                onPress={() => toggleVisibility(true, false, false)}
-              >
-                <Text style={{ color: colors.white }}>Owner</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  style={{
+                    width: 150,
+                    height: 35,
+                    backgroundColor: colors.orange,
+                    margin: 30,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 50,
+                  }}
+                  onPress={() => toggleVisibility(false, false, true)}
+                >
+                  <Text style={{ color: colors.white }}>Enable Contractor</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: 35,
+                    height: 35,
+                    backgroundColor: colors.orange,
+                    margin: 30,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 50,
+                  }}
+                  onPress={() => navigateToContractorsHome()}
+                >
+                  <Text style={{ color: colors.white }}>Go</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  style={{
+                    width: 150,
+                    height: 35,
+                    backgroundColor: colors.orange,
+                    margin: 30,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 50,
+                  }}
+                  onPress={() => toggleVisibility(false, true, false)}
+                >
+                  <Text style={{ color: colors.white }}>Enable Supplier</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: 35,
+                    height: 35,
+                    backgroundColor: colors.orange,
+                    margin: 30,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 50,
+                  }}
+                  onPress={() => navigateToSuppliersHome()}
+                >
+                  <Text style={{ color: colors.white }}>Go</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  style={{
+                    width: 150,
+                    height: 35,
+                    backgroundColor: colors.orange,
+                    margin: 30,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 50,
+                  }}
+                  onPress={() => toggleVisibility(true, false, false)}
+                >
+                  <Text style={{ color: colors.white }}>Enable Owner</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    width: 35,
+                    height: 35,
+                    backgroundColor: colors.orange,
+                    margin: 30,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 50,
+                  }}
+                  onPress={() => navigateToOwnersHome()}
+                >
+                  <Text style={{ color: colors.white }}>Go</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </Drawer.Screen>

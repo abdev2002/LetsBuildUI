@@ -17,6 +17,7 @@ import ContractDetailScreen from "../Contract Management/ContractDetailScreen"
 import BidScreen from "../Project Management & Inspection/BidScreen";
 import BidDetailScreen from "../Project Management & Inspection/BidDetailScreen"
 import ProjectDetailScreen from "../Project Management & Inspection/ProjectDetailScreen";
+import {Image} from "react-native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -43,19 +44,57 @@ export default function ContractorBottomNav() {
           let iconName;
 
           if (route.name === "Discover") {
-            iconName = focused ? "search" : "search-outline"; // Replace with the appropriate Ionicons name
+            iconName = focused ? "search" : "search-outline"; 
             return <Ionicons name={iconName} size={size} color={color} />;
           } else if (route.name === "My Projects") {
-            iconName = focused ? "project" : "project"; // Replace with the appropriate icon
-            return <Octicons name={iconName} size={size} color={color} />;
+            return focused ? (
+              <Image
+                source={require("../../assets/projectIconOrange.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            ) : (
+              <Image
+                source={require("../../assets/projectIconGray.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            );
           } else if (route.name === "Messages") {
             iconName = focused
               ? "chatbubble-ellipses"
-              : "chatbubble-ellipses-outline"; // Replace with the appropriate icon
+              : "chatbubble-ellipses-outline"; 
             return <Ionicons name={iconName} size={size} color={color} />;
           } else if (route.name === "My Contracts") {
-            iconName = "file-contract";
-            return <FontAwesome5 name={iconName} size={size} color={color} />;
+            return focused ? (
+              <Image
+                source={require("../../assets/contractOrange.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            ) : (
+              <Image
+                source={require("../../assets/contractGray.png")}
+                style={{
+                  height: size + 5,
+                  width: size + 5,
+                  marginTop: 5,
+                  marginLeft: 5,
+                }}
+              />
+            );
           } else if (route.name === "My Bids") {
             iconName = "file-invoice-dollar";
             return <FontAwesome5 name={iconName} size={size} color={color} />;

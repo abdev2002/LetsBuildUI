@@ -10,7 +10,6 @@ const App = () => {
     <NavigationContainer>
       <MainStack />
     </NavigationContainer>
-    // <CalculatorStack/>
   );
 };
 

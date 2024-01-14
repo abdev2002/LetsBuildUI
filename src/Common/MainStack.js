@@ -31,7 +31,7 @@ const MainStack = () => {
         }}
         initialRouteName="start"
       >
-        {/* <Stack.Screen name="Start" component={StartScreen} />
+        <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen
           name="Splash"
           component={Splash}
@@ -47,7 +47,7 @@ const MainStack = () => {
           name="Signup"
           component={SignupScreen}
           options={{ headerShown: false }}
-        />  */}
+        /> 
         <Stack.Screen
           name="Drawer"
           component={AppDrawer}
