@@ -175,7 +175,7 @@ const DiscoverStack = () => {
       <Stack.Screen name="Products" component={ProductScreen} />
       {/* <Stack.Screen name="Products Details" component={ProductDetailScreen} /> */}
 
-      {/* <Stack.Screen name="ProjectsDetails" component={ProjectDetailScreen} /> */}
+      <Stack.Screen name="ProjectsDetails" component={ProjectDetailScreen} />
     </Stack.Navigator>
   );
 };

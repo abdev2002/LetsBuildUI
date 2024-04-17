@@ -6,12 +6,14 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import TextInputWithIcon from "../Common/TextInputWithIcon";
 import { StatusBar } from "expo-status-bar";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Separator from "../Common/Separator";
+import {firebase} from "../Common/config"
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -22,93 +24,130 @@ const colors = {
   gray: "#cccccc",
 };
 export default class SignupScreen extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
+    this.state = {
+      email: "",
+      password: "",
+    };
   }
+
+  handleRegister = () => {
+    const { email, password } = this.state;
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log(email+"");
+
+    if (!emailRegex.test(email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address." + email);
+      return;
+    }
+    console.log(email);
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed up
+        console.log("User signed up successfully");
+        this.props.navigation.navigate("SignUpSecond");
+      })
+      .catch((error) => {
+        var errorMessage = error.message;
+        Alert.alert("Error signing up:", errorMessage);
+        // Handle sign up error
+      });
+  };
+
   render() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text
-          style={[
-            styles.title,
-            {
-              color: "#ff9d00",
-              fontSize: 36,
-              marginTop: 100,
-              marginBottom: 40,
-              fontWeight: "bold",
-              textAlign: "center",
-            },
-          ]}
-        >
-          LET'S BUILD
-        </Text>
-      </View>
-      <View style={styles.formContainer}>
-        <Text style={styles.title}>Signup to Let's Build</Text>
-        <TouchableOpacity style={styles.googleLoginButton}>
-          <Image
-            source={require("../../assets/icons8-google-48.png")}
-            style={styles.googleIcon}
-          />
-          <Text style={styles.buttonText}>Continue via Google</Text>
-        </TouchableOpacity>
-        <Separator text={"Or"} />
-        <TextInputWithIcon
-          placeholder="Enter First Name"
-          width={screenWidth - 40}
-          iconColor={"#ccc"}
-          icon={"person-circle"}
-          iconSize={35}
-          Family={Ionicons}
-        />
-        <TextInputWithIcon
-          placeholder="Enter Last Name"
-          width={screenWidth - 40}
-          iconColor={"#ccc"}
-          icon={"person-circle"}
-          iconSize={35}
-          Family={Ionicons}
-        />
-        <TextInputWithIcon
-          placeholder="Enter Email"
-          width={screenWidth - 40}
-          iconColor={"#ccc"}
-          icon={"email"}
-          Family={MaterialCommunityIcons}
-        />
-        <TextInputWithIcon
-          placeholder="Enter Password"
-          width={screenWidth - 40}
-          iconColor={"#ccc"}
-          icon={"form-textbox-password"}
-          Family={MaterialCommunityIcons}
-        />
-        <TouchableOpacity
-          style={styles.loginButton}
-          onPress={() => this.props.navigation.navigate("Login")}
-        >
-          <Text style={styles.buttonText}>Create my account</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.bottom}>
-        <Separator text={"Already have an account?"} />
-        <View style={styles.linksContainer}>
-          <TouchableOpacity
-            style={styles.roundButton}
-            onPress={() => this.props.navigation.navigate("Login")}
+    return (
+      <View style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text
+            style={[
+              styles.title,
+              {
+                color: "#ff9d00",
+                fontSize: 36,
+                marginTop: 100,
+                marginBottom: 40,
+                fontWeight: "bold",
+                textAlign: "center",
+              },
+            ]}
           >
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
-            </View>
+            LET'S BUILD
+          </Text>
+        </View>
+        <View style={styles.formContainer}>
+          <Text style={styles.title}>Signup to Let's Build</Text>
+          <TouchableOpacity style={styles.googleLoginButton}>
+            <Image
+              source={require("../../assets/icons8-google-48.png")}
+              style={styles.googleIcon}
+            />
+            <Text style={styles.buttonText}>Continue via Google</Text>
+          </TouchableOpacity>
+          <Separator text={"Or"} />
+          <TextInputWithIcon
+            placeholder="Enter First Name"
+            width={screenWidth - 40}
+            iconColor={"#ccc"}
+            icon={"person-circle"}
+            iconSize={35}
+            Family={Ionicons}
+          />
+          <TextInputWithIcon
+            placeholder="Enter Last Name"
+            width={screenWidth - 40}
+            iconColor={"#ccc"}
+            icon={"person-circle"}
+            iconSize={35}
+            Family={Ionicons}
+          />
+          <TextInputWithIcon
+            placeholder="Enter Email"
+            width={screenWidth - 40}
+            iconColor={"#ccc"}
+            icon={"email"}
+            Family={MaterialCommunityIcons}
+            onChangeText={(email) => this.setState({ email })}
+            value={this.state.email}
+          />
+          <TextInputWithIcon
+            placeholder="Enter Password"
+            width={screenWidth - 40}
+            iconColor={"#ccc"}
+            icon={"form-textbox-password"}
+            Family={MaterialCommunityIcons}
+            onChangeText={(password) => this.setState({ password })}
+            value={this.state.password}
+          />
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={this.handleRegister}
+          >
+            <Text style={styles.buttonText}>Create my account</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.bottom}>
+          <Separator text={"Already have an account?"} />
+          <View style={styles.linksContainer}>
+            <TouchableOpacity
+              style={styles.roundButton}
+              onPress={() => this.props.navigation.navigate("Login")}
+            >
+              <View style={styles.button}>
+                <Text style={styles.buttonText}>Login</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <StatusBar style="auto" />
       </View>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    );
+  }
 }
 
 const styles = StyleSheet.create({

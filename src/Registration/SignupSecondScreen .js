@@ -6,16 +6,16 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert
 } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import TextInputWithIcon from "../Common/TextInputWithIcon";
 import { StatusBar } from "expo-status-bar";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import Separator from "../Common/Separator";
-import { firebase } from "../Common/config";
+import {firebase} from "../Common/config"
 
 const screenWidth = Dimensions.get("window").width;
-
 
 const colors = {
   white: "#ffffff",
@@ -23,7 +23,7 @@ const colors = {
   black: "#000000",
   gray: "#cccccc",
 };
-export default class LoginScreen extends Component {
+export default class SignupSecondScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,55 +32,31 @@ export default class LoginScreen extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   // Initialize GoogleSignin
-  //   GoogleSignin.configure({
-  //     webClientId: "AIzaSyAh4U5YkZYKShSi_RSIg0BJjHWaK67gsj4", // From Firebase Console
-  //   });
-  // }
-
-  // handleGoogleLogin = async () => {
-  //   try {
-  //     // Get the user's Google ID token
-  //     const { idToken } = await GoogleSignin.signIn();
-
-  //     // Create a Google credential with the token
-  //     const googleCredential =
-  //       firebase.auth.GoogleAuthProvider.credential(idToken);
-
-  //     // Sign-in the user with the credential
-  //     await firebase.auth().signInWithCredential(googleCredential);
-
-  //     this.props.navigation.navigate("Drawer");
-  //   } catch (error) {
-  //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-  //       // User cancelled the sign-in flow
-  //       console.log("Cancelled");
-  //     } else if (error.code === statusCodes.IN_PROGRESS) {
-  //       // Operation (e.g. sign-in) is in progress already
-  //       console.log("In progress");
-  //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-  //       // Play Services not available or outdated
-  //       console.log("Play services not available");
-  //     } else {
-  //       // Some other error occurred
-  //       console.error(error);
-  //     }
-  //   }
-  // };
-
-  handleLogin = () => {
+  handleRegister = () => {
     const { email, password } = this.state;
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log(email+"");
+
+    if (!emailRegex.test(email)) {
+      Alert.alert("Invalid Email", "Please enter a valid email address." + email);
+      return;
+    }
     console.log(email);
+
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        this.props.navigation.navigate("Drawer");
+        // Signed up
+        console.log("User signed up successfully");
+        this.props.navigation.navigate("Login");
       })
       .catch((error) => {
         var errorMessage = error.message;
-        Alert.alert("Error logging in:", errorMessage);
+        Alert.alert("Error signing up:", errorMessage);
+        // Handle sign up error
       });
   };
 
@@ -97,6 +73,7 @@ export default class LoginScreen extends Component {
                 marginTop: 100,
                 marginBottom: 40,
                 fontWeight: "bold",
+                textAlign: "center",
               },
             ]}
           >
@@ -104,7 +81,31 @@ export default class LoginScreen extends Component {
           </Text>
         </View>
         <View style={styles.formContainer}>
-          <Text style={styles.title}>Login to Let's Build</Text>
+          <Text style={styles.title}>Signup to Let's Build</Text>
+          <TouchableOpacity style={styles.googleLoginButton}>
+            <Image
+              source={require("../../assets/icons8-google-48.png")}
+              style={styles.googleIcon}
+            />
+            <Text style={styles.buttonText}>Continue via Google</Text>
+          </TouchableOpacity>
+          <Separator text={"Or"} />
+          <TextInputWithIcon
+            placeholder="Enter First Name"
+            width={screenWidth - 40}
+            iconColor={"#ccc"}
+            icon={"person-circle"}
+            iconSize={35}
+            Family={Ionicons}
+          />
+          <TextInputWithIcon
+            placeholder="Enter Last Name"
+            width={screenWidth - 40}
+            iconColor={"#ccc"}
+            icon={"person-circle"}
+            iconSize={35}
+            Family={Ionicons}
+          />
           <TextInputWithIcon
             placeholder="Enter Email"
             width={screenWidth - 40}
@@ -123,29 +124,22 @@ export default class LoginScreen extends Component {
             onChangeText={(password) => this.setState({ password })}
             value={this.state.password}
           />
-          <TouchableOpacity style={styles.loginButton}>
-            <Text style={styles.buttonText} onPress={this.handleLogin}>
-              Login via Email
-            </Text>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={this.handleRegister}
+          >
+            <Text style={styles.buttonText}>Create my account</Text>
           </TouchableOpacity>
         </View>
-        <Separator text={"Or"} />
-        <TouchableOpacity style={styles.googleLoginButton}>
-          <Image
-            source={require("../../assets/icons8-google-48.png")}
-            style={styles.googleIcon}
-          />
-          <Text style={styles.buttonText}>Login via Google</Text>
-        </TouchableOpacity>
         <View style={styles.bottom}>
-          <Separator text={"Don't have an account?"} />
+          <Separator text={"Already have an account?"} />
           <View style={styles.linksContainer}>
             <TouchableOpacity
               style={styles.roundButton}
-              onPress={() => this.props.navigation.navigate("Signup")}
+              onPress={() => this.props.navigation.navigate("Login")}
             >
               <View style={styles.button}>
-                <Text style={styles.buttonText}>Signup</Text>
+                <Text style={styles.buttonText}>Login</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -160,8 +154,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    // justifyContent: "center",
   },
   formContainer: {
     alignItems: "center",
@@ -169,7 +161,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginVertical: 20
+    marginVertical: 20,
   },
   loginButton: {
     backgroundColor: "#ff9d00",
@@ -226,15 +218,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 10,
-    width: '100%',
+    width: "100%",
     backgroundColor: colors.white,
   },
   bottom: {
     // position: "absolute",
     // bottom: 0,
-    marginTop: 150,
+    // marginTop: 150,
     width: "100%",
     alignItems: "center",
     zIndex: -1000,
-  }
+  },
 });

@@ -40,7 +40,6 @@ export default class ProjectDetailScreen extends Component {
     };
 
     return (
-      // <ScrollView>
       <View style={styles.container}>
         <Image source={require("../../assets/icon.png")} style={styles.image} />
         <Text style={styles.title}>{project.title}</Text>
@@ -70,7 +69,6 @@ export default class ProjectDetailScreen extends Component {
           </View>
         </TouchableOpacity>
       </View>
-      // </ScrollView>
     );
   }
 }

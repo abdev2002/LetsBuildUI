@@ -27,6 +27,7 @@ class TextInputWithIcon extends Component {
       iconSize,
       borderColor,
       onFocusBorderColor,
+      onChangeText,
       width,
       Family
     } = this.props;
@@ -59,6 +60,7 @@ class TextInputWithIcon extends Component {
           placeholderTextColor={isFocused ? onFocusBorderColor : iconColor}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          onChangeText={onChangeText}
           style={{ flex: 1, height: 40 }}
         />
       </View>

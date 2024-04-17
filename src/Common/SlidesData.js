@@ -1,20 +1,20 @@
 const slides = [
   {
     key: 1,
-    title: "Hassle-Free Car Rentals",
-    text: "Rent your desired vehicle hassle-free through Pak Renters. Choose from a wide range of cars and enjoy a seamless rental experience.",
+    title: "Your Project, Your Way",
+    text: "Plan, execute, and oversee construction projects seamlessly, from inception to completion.",
     image: require("../../assets/screen1.png"),
   },
   {
     key: 2,
-    title: "Variety of Vehicles Available",
-    text: "Explore a diverse collection of vehicles for rent. Whether it's a luxurious sedan, a rugged SUV, or a compact car, find the perfect ride for your needs.",
+    title: "Discover, Bid and Build",
+    text: "Discover and bid on construction projects to grow your business and secure new contracts",
     image: require("../../assets/screen2.png"),
   },
   {
     key: 3,
-    title: "Flexible Rental Plans",
-    text: "Our flexible rental plans cater to your schedule. Rent by the hour, day, week, or longer periods. Pak Renters offers options that suit your convenience.",
+    title: "Sell Smart, Build Bright",
+    text: "A Marketplace for Construction Materials, Connecting Sellers and Buyers for smooth Transactions.",
     image: require("../../assets/screen1.png"),
   },
 ];

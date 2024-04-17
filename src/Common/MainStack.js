@@ -7,6 +7,7 @@ import LoginScreen from "../Registration/LoginScreen";
 import StartScreen from "../Common/StartScreen";
 import IntroScreen from "../Registration/IntroScreen";
 import SignupScreen from "../Registration/SignupScreen";
+import SignupSecondScreen from "../Registration/SignupSecondScreen";
 import AppDrawer from "./AppDrawer";
 import { colors } from "./Colors";
 
@@ -14,7 +15,7 @@ const Stack = createStackNavigator();
 
 const MainStack = () => {
   return (
-    <NavigationContainer independent={true} initialRouteName="Drawer">
+    <NavigationContainer independent={true} initialRouteName="Login">
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
@@ -31,13 +32,17 @@ const MainStack = () => {
         }}
         initialRouteName="start"
       >
-        <Stack.Screen name="Start" component={StartScreen} />
+        {/* <Stack.Screen name="Start" component={StartScreen} />
         <Stack.Screen
           name="Splash"
           component={Splash}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Intro" component={IntroScreen} />
+        <Stack.Screen
+          name="Intro"
+          component={IntroScreen}
+          options={{ headerShown: false }}
+        /> */}
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -47,7 +52,12 @@ const MainStack = () => {
           name="Signup"
           component={SignupScreen}
           options={{ headerShown: false }}
-        /> 
+        />
+        <Stack.Screen
+          name="SignupSecond"
+          component={SignupSecondScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Drawer"
           component={AppDrawer}

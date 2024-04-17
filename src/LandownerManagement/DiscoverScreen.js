@@ -27,7 +27,7 @@ export class DiscoverScreen extends PureComponent {
   };
 
   showAllProducts = () => {
-    this.props.navigation.navigate("Products");
+    this.props.navigation.navigate("Settings");
   };
 
   render() {
@@ -118,9 +118,9 @@ export class DiscoverScreen extends PureComponent {
               <Text style={styles.listHeaderText}>Products</Text>
             </View>
             <TouchableOpacity onPress={() => this.showAllProducts()}>
-              <Text style={{ color: "gray", fontSize: 17 }}>
+              {/* <Text style={{ color: "gray", fontSize: 17 }}>
                 Visit Marketplace
-              </Text>
+              </Text> */}
             </TouchableOpacity>
           </View>
           <View style={styles.listContainer}>

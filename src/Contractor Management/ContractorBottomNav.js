@@ -18,6 +18,7 @@ import BidScreen from "../Project Management & Inspection/BidScreen";
 import BidDetailScreen from "../Project Management & Inspection/BidDetailScreen"
 import ProjectDetailScreen from "../Project Management & Inspection/ProjectDetailScreen";
 import {Image} from "react-native";
+import ProductScreen from "../Supplier Management/ProductScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -158,6 +159,7 @@ const HomeStack = () => {
     >
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ContractDetails" component={ContractDetailScreen} />
+      <Stack.Screen name="Products" component={ProductScreen} />
     </Stack.Navigator>
   );
 };
