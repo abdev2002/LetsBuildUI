@@ -7,9 +7,10 @@ import LoginScreen from "../Registration/LoginScreen";
 import StartScreen from "../Common/StartScreen";
 import IntroScreen from "../Registration/IntroScreen";
 import SignupScreen from "../Registration/SignupScreen";
-import SignupSecondScreen from "../Registration/SignupSecondScreen";
 import AppDrawer from "./AppDrawer";
 import { colors } from "./Colors";
+import GetProfilePic from "../Registration/GetProfilePic";
+import GetCNIC from "../Registration/GetCNIC";
 
 const Stack = createStackNavigator();
 
@@ -54,8 +55,13 @@ const MainStack = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SignupSecond"
-          component={SignupSecondScreen}
+          name="ProfilePic"
+          component={GetProfilePic}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="GetCNIC"
+          component={GetCNIC}
           options={{ headerShown: false }}
         />
         <Stack.Screen

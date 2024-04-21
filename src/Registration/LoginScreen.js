@@ -109,7 +109,7 @@ export default class LoginScreen extends Component {
             placeholder="Enter Email"
             width={screenWidth - 40}
             iconColor={"#ccc"}
-            icon={"email"}
+            icon={"email-outline"}
             Family={MaterialCommunityIcons}
             onChangeText={(email) => this.setState({ email })}
             value={this.state.email}
